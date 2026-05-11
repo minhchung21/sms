@@ -6,137 +6,265 @@
 <div class="page-box">
 
     <!-- タイトル -->
-    <h2 style="background:#eee; padding:10px;">学生管理</h2>
+    <h2 class="mb-4">
+        学生管理
+    </h2>
 
-<!-- 新規登録 -->
-	 <div style="text-align:right; margin:10px 0;">
-        <a href="StudentCreate.action">新規登録</a>
+    <!-- 新規登録 -->
+    <div class="text-end mb-3">
+
+        <a href="StudentCreate.action"
+           class="btn btn-primary">
+
+            新規登録
+
+        </a>
+
     </div>
 
-<!-- 検索フォーム -->
-<form method="get">
 
-<div class="row border mx-3 mb-3 py-2 align-items-center rounded">
+    <!-- ===== 検索フォーム ===== -->
+    <form method="get">
 
-    <!-- 入学年度選択 -->
-    <div class="col-4">
-        <label>入学年度</label>
-        <select name="f1">
-            <!-- 未選択用 -->
-            <option value="0">--------</option>
+        <div class="row-box shadow-sm">
 
-            <!-- 年度一覧をループ -->
-            <c:forEach var="year" items="${ent_year_set}">
-                <option value="${year}" <c:if test="${year == f1 + 0}">selected</c:if>>${year}</option>
-            </c:forEach>
+            <!-- 入学年度 -->
+            <div class="col-4">
 
-        </select>
-    </div>
+                <label>
+                    入学年度
+                </label>
 
-    <!-- クラス選択 -->
-    <div class="col-4">
-        <label>クラス</label>
-        <select name="f2">
-            <!-- 未選択用 -->
-            <option value="0">--------</option>
+                <select name="f1">
 
-            <!-- クラス番号一覧 -->
-            <c:forEach var="num" items="${class_num_set}">
-                <!-- 選択状態を保持 -->
-                <option value="${num}" <c:if test="${num == f2}">selected</c:if>>${num}</option>
-            </c:forEach>
+                    <option value="0">
+                        --------
+                    </option>
 
-        </select>
-    </div>
+                    <c:forEach var="year" items="${ent_year_set}">
 
-    <!-- 在学チェック -->
-    <div class="col-2">
-        <label>
-            在学中
-            <!-- チェック状態を保持 -->
-            <input type="checkbox" name="f3"
-                   <c:if test="${not empty f3}">checked</c:if> />
-        </label>
-    </div>
+                        <option value="${year}"
+                            <c:if test="${year == f1 + 0}">selected</c:if>>
 
-    <!-- 検索ボタン -->
-    <div class="col-2">
-        <button>絞込み</button>
+                            ${year}
+
+                        </option>
+
+                    </c:forEach>
+
+                </select>
+
+            </div>
+
+
+            <!-- クラス -->
+            <div class="col-4">
+
+                <label>
+                    クラス
+                </label>
+
+                <select name="f2">
+
+                    <option value="0">
+                        --------
+                    </option>
+
+                    <c:forEach var="num" items="${class_num_set}">
+
+                        <option value="${num}"
+                            <c:if test="${num == f2}">selected</c:if>>
+
+                            ${num}
+
+                        </option>
+
+                    </c:forEach>
+
+                </select>
+
+            </div>
+
+
+            <!-- 在学中 -->
+            <div class="col-2">
+
+                <label>
+
+                    在学中
+
+                    <input type="checkbox"
+                           name="f3"
+
+                           <c:if test="${not empty f3}">
+                               checked
+                           </c:if>>
+
+                </label>
+
+            </div>
+
+
+            <!-- ボタン -->
+            <div class="col-2 d-flex align-items-end">
+
+                <button class="btn btn-secondary">
+
+                    絞込み
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- エラー -->
+        <c:if test="${not empty errors.f1}">
+
+            <div class="text-danger mt-2">
+
+                ${errors.f1}
+
+            </div>
+
+        </c:if>
+
+    </form>
+
+
+
+    <!-- ===== 検索結果 ===== -->
+
+    <c:if test="${not empty students}">
+
+        <!-- 件数 -->
+        <div class="mb-3">
+
+            検索結果：
+            ${students.size()}件
+
+        </div>
+
+
+        <!-- Table -->
+        <table class="table table-hover table-bordered bg-white">
+
+            <thead class="table-light">
+
+                <tr>
+
+                    <th>
+                        入学年度
+                    </th>
+
+                    <th>
+                        学生番号
+                    </th>
+
+                    <th>
+                        氏名
+                    </th>
+
+                    <th class="text-center">
+                        クラス
+                    </th>
+
+                    <th class="text-center">
+                        在学中
+                    </th>
+
+                    <th class="text-center">
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <!-- 学生一覧 -->
+                <c:forEach var="stu" items="${students}">
+
+                    <tr>
+
+                        <td>
+                            ${stu.entYear}
+                        </td>
+
+                        <td>
+                            ${stu.no}
+                        </td>
+
+                        <td>
+                            ${stu.name}
+                        </td>
+
+                        <td class="text-center">
+                            ${stu.classNum}
+                        </td>
+
+                        <!-- 在学 -->
+                        <td class="text-center">
+
+                            <c:if test="${stu.attend}">
+                                ○
+                            </c:if>
+
+                            <c:if test="${not stu.attend}">
+                                ×
+                            </c:if>
+
+                        </td>
+
+                        <!-- 更新 -->
+                        <td class="text-center">
+
+                            <a href="StudentUpdate.action?no=${stu.no}"
+                               class="btn btn-sm btn-outline-primary">
+
+                                変更
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                </c:forEach>
+
+            </tbody>
+
+        </table>
+
+    </c:if>
+
+
+
+    <!-- データなし -->
+    <c:if test="${empty students}">
+
+        <div class="alert alert-warning">
+
+            学生情報が存在しませんでした。
+
+        </div>
+
+    </c:if>
+
+
+
+    <!-- 戻る -->
+    <div class="mt-4">
+
+        <a href="../auth/Menu.action"
+           class="btn btn-outline-secondary">
+
+            メニューへ戻る
+
+        </a>
+
     </div>
 
 </div>
-
-<!-- エラーメッセージ表示 -->
-<c:if test="${not empty errors.f1}">
-    <div style="color:red">
-        ${errors.f1}
-    </div>
-</c:if>
-
-</form>
-
-<!-- 検索結果表示 -->
-<c:choose>
-
-<c:when test="${not empty students}">
-    <!-- 件数表示 -->
-    <div>検索結果：${students.size()}件</div>
-
-    <table style="width:100%; border-collapse:collapse; background:#fff;">
-
-    <!-- header -->
-    <tr style="border-bottom:2px solid #ccc;">
-
-        <th style="text-align:left; padding:12px 10px;">入学年度</th>
-		<th style="text-align:left; padding:12px 10px;">学生番号</th>
-		<th style="text-align:left; padding:12px 10px;">氏名</th>
-		<th style="text-align:center; padding:12px 10px; width:100px;">クラス</th>
-		<th style="text-align:center; padding:12px 10px; width:100px;">在学中</th>
-
-        <th style="text-align:center; padding:12px 10px; width:100px;">
-        </th>
-
-    </tr>
-
-        <!-- 学生リストをループ -->
-        <c:forEach var="stu" items="${students}">
-            <tr>
-                <td>${stu.entYear}</td>
-                <td>${stu.no}</td>
-                <td>${stu.name}</td>
-                <td>${stu.classNum}</td>
-
-                <!-- 在学フラグ表示 -->
-                <td>
-                    <c:choose>
-                        <c:when test="${stu.attend}">○</c:when>
-                        <c:otherwise>×</c:otherwise>
-                    </c:choose>
-                </td>
-
-                <!-- 更新画面へのリンク -->
-                <td>
-                    <a href="StudentUpdate.action?no=${stu.no}">変更</a>
-                </td>
-            </tr>
-        </c:forEach>
-
-    </table>
-</c:when>
-
-<c:otherwise>
-    <!-- データがない場合 -->
-    <div>学生情報が存在しませんでした。</div>
-</c:otherwise>
-
-</c:choose>
-
-<div style="margin-top:20px;">
-    <a href="../auth/Menu.action" style="margin-right:20px;">
-        メニューへ戻る
-    </a>
-</div>
-
-</section>
-
-</section>

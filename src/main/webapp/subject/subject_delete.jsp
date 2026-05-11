@@ -3,42 +3,65 @@
 
 <%@ include file="../header.jsp" %>
 
-<section style="padding:20px;">
+<div class="page-box">
 
     <!-- タイトル -->
-    <h2 style="
-    background:#eee;
-    padding:10px 15px;
-    margin-bottom:20px;
-">	科目情報削除
+    <h2 class="mb-4">
+        科目情報削除
     </h2>
 
-    <!-- エラー表示 -->
+
+    <!-- エラー -->
     <c:if test="${not empty errorMessage}">
-        <div style="color:red; margin:15px 0;">
+
+        <div class="alert alert-danger">
+
             ${errorMessage}
+
         </div>
+
     </c:if>
 
-    <!-- ② メッセージ -->
-    <p style="margin:20px 0;">
-        「${subject.name}（${subject.cd}）」を削除してもよろしいですか
-    </p>
 
-    <!-- ③ 削除ボタン -->
-    <form action="SubjectDeleteExecute.action" method="post">
-        <input type="hidden" name="cd" value="${subject.cd}">
-        
-        <button type="submit"
-                style="background:#d9534f; color:white; border:none;
-                       padding:8px 16px; border-radius:5px;">
-            削除
-        </button>
-    </form>
 
-    <!-- ④ 戻る -->
-    <div style="margin-top:20px;">
-        <a href="SubjectList.action">戻る</a>
+    <!-- メッセージ -->
+    <div class="alert alert-warning">
+
+        「${subject.name}（${subject.cd}）」を削除してもよろしいですか？
+
     </div>
 
-</section>
+
+
+    <!-- 削除 -->
+    <form action="SubjectDeleteExecute.action"
+          method="post">
+
+        <input type="hidden"
+               name="cd"
+               value="${subject.cd}">
+
+
+        <!-- ボタン -->
+        <div class="d-flex gap-2 mt-4">
+
+            <button type="submit"
+                    class="btn btn-danger">
+
+                削除
+
+            </button>
+
+            <a href="SubjectList.action"
+               class="btn btn-outline-secondary">
+
+                戻る
+
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+

@@ -6,7 +6,7 @@
 
     <!-- タイトル -->
     <h2 class="mb-4">
-        学生情報変更
+        クラス情報変更
     </h2>
 
 
@@ -21,14 +21,13 @@
     <!-- ボタン -->
     <div class="mt-4">
 
-        <a href="StudentList.action"
+        <a href="ClassList.action"
            class="btn btn-primary">
 
-            学生一覧へ
+            クラス一覧へ
 
         </a>
 
     </div>
 
 </div>
-

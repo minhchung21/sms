@@ -1,36 +1,133 @@
 <%@page contentType="text/html; charset=UTF-8" %>
+
 <%@ include file="../header.jsp" %>
 
-<section style="padding:20px;">
-
 <!-- タイトル -->
-<h2 style="background:#eee; padding:10px;">
+<h2 class="mb-4">
     メニュー
 </h2>
 
-<nav style="background:#f8f9fa; padding:10px; margin-bottom:15px;">
-    <ul style="display:flex; gap:20px; list-style:none; margin:0; padding:0;">
+<!-- Menu Box -->
+<div class="row text-center g-4 mt-3">
 
-        <!-- 学生管理 -->
-        <li>
-            <a href="../student/StudentList.action">
+    <!-- 学生管理 -->
+    <div class="col-md-3">
+
+        <div class="shadow rounded d-flex
+                    align-items-center
+                    justify-content-center"
+
+             style="
+                    height:180px;
+                    background:#dbb;
+             ">
+
+            <a href="../student/StudentList.action"
+               class="fs-4 text-decoration-none text-dark fw-bold">
+
                 学生管理
-            </a>
-        </li>
 
-        <!-- 成績管理 -->
-        <li>
-            <a href="#">
-                成績管理
             </a>
-        </li>
 
-        <!-- 科目管理 -->
-        <li>
-            <a href="../subject/SubjectList.action">
+        </div>
+
+    </div>
+
+
+    <!-- 成績管理 -->
+    <div class="col-md-3">
+
+        <div class="shadow rounded d-flex
+                    align-items-center
+                    justify-content-center"
+
+             style="
+                    height:180px;
+                    background:#bdb;
+             ">
+
+            <div>
+
+                <div class="fs-4 fw-bold mb-3">
+                    成績管理
+                </div>
+
+                <div class="mb-2">
+
+                    <a href="#"
+                       class="text-decoration-none">
+
+                        成績登録
+
+                    </a>
+
+                </div>
+
+                <div>
+
+                    <a href="#"
+                       class="text-decoration-none">
+
+                        成績参照
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- 科目管理 -->
+    <div class="col-md-3">
+
+        <div class="shadow rounded d-flex
+                    align-items-center
+                    justify-content-center"
+
+             style="
+                    height:180px;
+                    background:#bbd;
+             ">
+
+            <a href="../subject/SubjectList.action"
+               class="fs-4 text-decoration-none text-dark fw-bold">
+
                 科目管理
-            </a>
-        </li>
 
-    </ul>
-</nav>
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- クラス管理 -->
+    <div class="col-md-3">
+
+        <div class="shadow rounded d-flex
+                    align-items-center
+                    justify-content-center"
+
+             style="
+                    height:180px;
+                    background:#ddb;
+             ">
+
+            <a href="../classnum/ClassList.action"
+               class="fs-4 text-decoration-none text-dark fw-bold">
+
+                クラス管理
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+

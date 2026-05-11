@@ -3,211 +3,172 @@
 
 <%@ include file="../header.jsp" %>
 
-<section style="padding:20px;">
+<div class="page-box">
 
-<!-- タイトル -->
-<h2 style="
-    background:#eee;
-    padding:10px 15px;
-    margin-bottom:20px;
-">
-    学生情報変更
-</h2>
+    <!-- タイトル -->
+    <h2 class="mb-4">
+        学生情報変更
+    </h2>
 
-<!-- 存在しないエラー -->
-<c:if test="${not empty errorMessage}">
-    <div style="
-        color:red;
-        margin-bottom:15px;
-    ">
-        ${errorMessage}
-    </div>
-</c:if>
 
-<form action="StudentUpdateExecute.action"
-      method="post"
-      style="max-width:920px;">
+    <!-- エラー -->
+    <c:if test="${not empty errorMessage}">
 
-    <!-- 入学年度 -->
-    <div style="margin-bottom:14px;">
+        <div class="alert alert-danger">
 
-        <label style="
-            display:block;
-            margin-bottom:4px;
-        ">
-            入学年度
-        </label>
+            ${errorMessage}
 
-        <div style="
-            height:34px;
-            line-height:34px;
-            padding:0 10px;
-            border:1px solid #ccc;
-            border-radius:4px;
-            background:#f8f8f8;
-        ">
-            ${student.entYear}
         </div>
 
-        <input type="hidden"
-               name="entYear"
-               value="${student.entYear}">
-
-    </div>
+    </c:if>
 
 
-    <!-- 学生番号 -->
-    <div style="margin-bottom:14px;">
 
-        <label style="
-            display:block;
-            margin-bottom:4px;
-        ">
-            学生番号
-        </label>
+    <!-- Form -->
+    <form action="StudentUpdateExecute.action"
+          method="post"
+          style="max-width:700px;">
 
-        <div style="
-            height:34px;
-            line-height:34px;
-            padding:0 10px;
-            border:1px solid #ccc;
-            border-radius:4px;
-            background:#f8f8f8;
-        ">
-            ${student.no}
+
+        <!-- 入学年度 -->
+        <div class="mb-3">
+
+            <label class="form-label">
+                入学年度
+            </label>
+
+            <input type="text"
+                   value="${student.entYear}"
+                   class="form-control"
+                   readonly>
+
+            <input type="hidden"
+                   name="entYear"
+                   value="${student.entYear}">
+
         </div>
 
-        <input type="hidden"
-               name="no"
-               value="${student.no}">
-
-    </div>
 
 
-    <!-- 氏名 -->
-    <div style="margin-bottom:14px;">
+        <!-- 学生番号 -->
+        <div class="mb-3">
 
-        <label style="
-            display:block;
-            margin-bottom:4px;
-        ">
-            氏名
-        </label>
+            <label class="form-label">
+                学生番号
+            </label>
 
-        <input type="text"
-               name="name"
-               value="${student.name}"
-               maxlength="30"
-               placeholder="氏名を入力してください"
-               required
+            <input type="text"
+                   value="${student.no}"
+                   class="form-control"
+                   readonly>
 
-               style="
-                    width:100%;
-                    height:34px;
-                    padding:0 10px;
-                    border:1px solid #ccc;
-                    border-radius:4px;
-                    box-sizing:border-box;
-               ">
+            <input type="hidden"
+                   name="no"
+                   value="${student.no}">
 
-        <c:if test="${not empty errors.name}">
-            <div style="
-                color:red;
-                margin-top:4px;
-            ">
-                ${errors.name}
-            </div>
-        </c:if>
-
-    </div>
+        </div>
 
 
-    <!-- クラス -->
-    <div style="margin-bottom:14px;">
 
-        <label style="
-            display:block;
-            margin-bottom:4px;
-        ">
-            クラス
-        </label>
+        <!-- 氏名 -->
+        <div class="mb-3">
 
-        <select name="classNum"
-                style="
-                    width:100%;
-                    height:34px;
-                    padding:0 10px;
-                    border:1px solid #ccc;
-                    border-radius:4px;
-                    box-sizing:border-box;
-                    background:#fff;
-                ">
+            <label class="form-label">
+                氏名
+            </label>
 
-            <c:forEach var="num" items="${classList}">
+            <input type="text"
+                   name="name"
+                   value="${student.name}"
+                   maxlength="30"
+                   placeholder="氏名を入力してください"
+                   required
+                   class="form-control">
 
-                <option value="${num}"
-                    <c:if test="${student.classNum == num}">
-                        selected
-                    </c:if>>
+            <c:if test="${not empty errors.name}">
 
-                    ${num}
+                <div class="text-danger mt-1">
 
-                </option>
+                    ${errors.name}
 
-            </c:forEach>
+                </div>
 
-        </select>
+            </c:if>
 
-    </div>
+        </div>
 
 
-    <!-- 在学中 -->
-    <div style="margin-bottom:18px;">
 
-        <label>
+        <!-- クラス -->
+        <div class="mb-3">
+
+            <label class="form-label">
+                クラス
+            </label>
+
+            <select name="classNum"
+                    class="form-select">
+
+                <c:forEach var="num" items="${classList}">
+
+                    <option value="${num}"
+                        <c:if test="${student.classNum == num}">
+                            selected
+                        </c:if>>
+
+                        ${num}
+
+                    </option>
+
+                </c:forEach>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- 在学中 -->
+        <div class="mb-4 form-check">
 
             <input type="checkbox"
                    name="attend"
                    value="true"
+                   class="form-check-input"
 
                    <c:if test="${student.attend}">
                        checked
                    </c:if>>
 
-            在学中
+            <label class="form-check-label">
 
-        </label>
+                在学中
 
-    </div>
+            </label>
 
-
-    <!-- ボタン -->
-    <div style="margin-top:8px;">
-
-        <button type="submit"
-                style="
-                    height:36px;
-                    padding:0 18px;
-                    border:none;
-                    border-radius:4px;
-                    background:#666;
-                    color:#fff;
-                    cursor:pointer;
-                ">
-            変更
-        </button>
-
-    </div>
-
-</form>
+        </div>
 
 
-<div style="margin-top:14px;">
 
-    <a href="StudentList.action">
-        戻る
-    </a>
+        <!-- ボタン -->
+        <div class="d-flex gap-2">
+
+            <button type="submit"
+                    class="btn btn-primary">
+
+                変更
+
+            </button>
+
+            <a href="StudentList.action"
+               class="btn btn-outline-secondary">
+
+                戻る
+
+            </a>
+
+        </div>
+
+    </form>
 
 </div>
-
-</section>

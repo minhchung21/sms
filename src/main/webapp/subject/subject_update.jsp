@@ -3,58 +3,101 @@
 
 <%@ include file="../header.jsp" %>
 
-<section style="padding:20px;">
+<div class="page-box">
 
     <!-- タイトル -->
-    <h2 style="
-    background:#eee;
-    padding:10px 15px;
-    margin-bottom:20px;
-">	科目情報変更
+    <h2 class="mb-4">
+        科目情報変更
     </h2>
 
-    <!-- エラー表示 -->
-<c:if test="${not empty errorMessage}">
-    <div style="color:red; margin-bottom:15px;">
-        ${errorMessage}
-    </div>
-</c:if>
 
-<form action="SubjectUpdateExecute.action" method="post">
+    <!-- エラー -->
+    <c:if test="${not empty errorMessage}">
 
-    <!-- 科目コード（固定） -->
-    <div style="margin-bottom:15px;">
-        <label>科目コード</label><br>
-        <div style="margin-top:5px;">
-            ${subject.cd}
+        <div class="alert alert-danger">
+
+            ${errorMessage}
+
         </div>
-        <input type="hidden" name="cd" value="${subject.cd}">
-    </div>
 
-    <!-- 科目名 -->
-    <div style="margin-bottom:20px;">
-        <label>科目名</label><br>
-        <input type="text" name="name"
-               value="${subject.name}"
-               maxlength="20"
-               required
-               style="margin-top:5px; padding:5px; width:100%; box-sizing:border-box;">
+    </c:if>
 
-        <c:if test="${not empty errors.name}">
-            <div style="color:red; margin-top:5px;">
-                ${errors.name}
-            </div>
-        </c:if>
-    </div>
 
-    <!-- ボタン -->
-    <div style="margin-top:20px;">
-        <button type="submit"
-                style="background:#2d6cdf; color:white; border:none;
-                       padding:8px 16px; border-radius:5px;">変更</button>
-    </div>
 
-</form>
+    <!-- Form -->
+    <form action="SubjectUpdateExecute.action"
+          method="post"
+          style="max-width:700px;">
 
-<br>
-<a href="SubjectList.action">戻る</a>
+
+        <!-- 科目コード -->
+        <div class="mb-3">
+
+            <label class="form-label">
+                科目コード
+            </label>
+
+            <input type="text"
+                   value="${subject.cd}"
+                   class="form-control"
+                   readonly>
+
+            <input type="hidden"
+                   name="cd"
+                   value="${subject.cd}">
+
+        </div>
+
+
+
+        <!-- 科目名 -->
+        <div class="mb-4">
+
+            <label class="form-label">
+                科目名
+            </label>
+
+            <input type="text"
+                   name="name"
+                   value="${subject.name}"
+                   maxlength="20"
+                   required
+                   class="form-control">
+
+
+            <c:if test="${not empty errors.name}">
+
+                <div class="text-danger mt-1">
+
+                    ${errors.name}
+
+                </div>
+
+            </c:if>
+
+        </div>
+
+
+
+        <!-- ボタン -->
+        <div class="d-flex gap-2">
+
+            <button type="submit"
+                    class="btn btn-primary">
+
+                変更
+
+            </button>
+
+            <a href="SubjectList.action"
+               class="btn btn-outline-secondary">
+
+                戻る
+
+            </a>
+
+        </div>
+
+    </form>
+
+</div>

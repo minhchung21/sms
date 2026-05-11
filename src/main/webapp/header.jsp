@@ -11,232 +11,227 @@
 
 <title>得点管理システム</title>
 
+<!-- Bootstrap -->
+<link
+ href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+ rel="stylesheet">
+
 <style>
 
 /* ===== Base ===== */
-body {
-    margin: 0;
-    font-family: "Yu Gothic", "Meiryo", Arial, sans-serif;
-    background: #f8f8f8;
-    color: #333;
+body{
+    margin:0;
+    font-family:"Yu Gothic","Meiryo",sans-serif;
+    background:#f8f8f8;
+    color:#333;
 }
 
 
 /* ===== Header ===== */
-.header {
-    background: #dfe7f1;
-    padding: 15px 20px 10px;
+.header{
+    background:#dfe7f1;
+    padding:15px 25px;
+    border-bottom:1px solid #ccc;
 }
 
-/* title */
-.header h1 {
-    margin: 0;
-    font-size: 28px;
-    font-weight: bold;
+.header h1{
+    margin:0;
+    font-size:30px;
+    font-weight:bold;
 }
 
-/* user */
-.user-info {
-    text-align: right;
-    font-size: 14px;
-    margin-top: 5px;
+/* user info */
+.user-info{
+    text-align:right;
+    margin-top:5px;
+    font-size:14px;
 }
 
-/* logout */
-.user-info a {
-    margin-left: 10px;
-    color: #007bff;
-    text-decoration: none;
-}
-
-.user-info a:hover {
-    text-decoration: underline;
+.user-info a{
+    margin-left:10px;
 }
 
 
 /* ===== Layout ===== */
-.container {
-    display: flex;
+.container-box{
+    display:flex;
 }
 
 
 /* ===== Sidebar ===== */
-.sidebar {
-    width: 200px;
-    min-height: 100vh;
+.sidebar{
+    width:220px;
+    min-height:100vh;
 
-    padding: 20px;
+    padding:20px;
 
-    background: #f3f3f3;
-    border-right: 1px solid #ddd;
+    background:#f3f3f3;
+    border-right:1px solid #ddd;
 }
 
-/* menu */
-.sidebar a {
-    display: block;
-    margin-bottom: 12px;
-
-    color: #007bff;
-    text-decoration: none;
-    font-size: 14px;
+/* menu title */
+.sidebar-title{
+    margin-bottom:15px;
+    font-size:18px;
+    font-weight:bold;
 }
 
-.sidebar a:hover {
-    text-decoration: underline;
+/* menu link */
+.sidebar a{
+    display:block;
+
+    padding:10px 12px;
+    margin-bottom:8px;
+
+    border-radius:6px;
+
+    color:#333;
+    text-decoration:none;
+
+    transition:0.2s;
+}
+
+.sidebar a:hover{
+    background:#e3eaf5;
 }
 
 
 /* ===== Content ===== */
-.content {
-    flex: 1;
-    padding: 25px;
-    background: #fff;
-    min-height: 100vh;
+.content{
+    flex:1;
+
+    padding:30px;
+
+    background:#fff;
 }
 
-/* title */
-.content h2 {
-    margin-top: 0;
+/* page title */
+.content h2{
+    margin-top:0;
 
-    padding: 10px;
+    padding:12px 15px;
 
-    background: #eee;
-    font-size: 22px;
+    background:#eee;
+
+    border-radius:5px;
+
+    font-size:24px;
 }
 
 
 /* ===== Form ===== */
-.row {
-    display: flex;
-    align-items: flex-end;
-    gap: 20px;
+.row-box{
+    display:flex;
+    align-items:flex-end;
+    gap:20px;
 
-    margin: 15px 0;
-    padding: 20px;
+    margin:20px 0;
+    padding:20px;
 
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    background:#fafafa;
 
-    background: #fafafa;
+    border:1px solid #ddd;
+    border-radius:6px;
 }
 
 /* input area */
 .col-4,
-.col-2 {
-    display: flex;
-    flex-direction: column;
+.col-2{
+    display:flex;
+    flex-direction:column;
 }
 
-.col-4 {
-    width: 260px;
+.col-4{
+    width:260px;
 }
 
-.col-2 {
-    width: 120px;
+.col-2{
+    width:120px;
 }
 
 /* label */
-label {
-    margin-bottom: 8px;
-    font-size: 14px;
+label{
+    margin-bottom:8px;
+    font-size:14px;
 }
 
-/* select */
-select {
-    height: 38px;
-    padding: 0 10px;
-
-    border: 1px solid #ccc;
-    border-radius: 4px;
-
-    background: #fff;
-}
-
-/* text */
+/* input */
 input[type="text"],
-input[type="password"] {
-    height: 38px;
-    padding: 0 10px;
+input[type="password"],
+select{
+    height:38px;
 
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding:0 10px;
 
-    box-sizing: border-box;
+    border:1px solid #ccc;
+    border-radius:4px;
+
+    box-sizing:border-box;
 }
 
 /* checkbox */
-input[type="checkbox"] {
-    margin-left: 8px;
+input[type="checkbox"]{
+    margin-left:5px;
 }
 
-/* button */
-button {
-    height: 38px;
-    padding: 0 20px;
 
-    border: none;
-    border-radius: 4px;
+/* ===== Button ===== */
+button{
+    height:38px;
 
-    background: #666;
-    color: white;
+    padding:0 20px;
 
-    cursor: pointer;
+    border:none;
+    border-radius:4px;
+
+    background:#666;
+    color:white;
+
+    cursor:pointer;
 }
 
-button:hover {
-    opacity: 0.9;
+button:hover{
+    opacity:0.9;
 }
 
 
 /* ===== Table ===== */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
+table{
+    width:100%;
+
+    background:white;
+
+    border-collapse:collapse;
 }
 
-/* header */
-th {
-    padding: 12px 10px;
+th{
+    padding:12px 10px;
 
-    border-bottom: 2px solid #ccc;
+    background:#f5f5f5;
 
-    text-align: left;
-    font-size: 14px;
+    border-bottom:2px solid #ccc;
+
+    text-align:left;
 }
 
-/* body */
-td {
-    padding: 12px 10px;
+td{
+    padding:12px 10px;
 
-    border-bottom: 1px solid #e5e5e5;
-    font-size: 14px;
+    border-bottom:1px solid #e5e5e5;
 }
 
-/* hover */
-tr:hover {
-    background: #fafafa;
-}
-
-/* center */
-th:nth-child(4),
-td:nth-child(4),
-th:nth-child(5),
-td:nth-child(5),
-th:nth-child(6),
-td:nth-child(6) {
-    text-align: center;
+tr:hover{
+    background:#fafafa;
 }
 
 
 /* ===== Link ===== */
-a {
-    color: #007bff;
-    text-decoration: none;
+a{
+    text-decoration:none;
 }
 
-a:hover {
-    text-decoration: underline;
+a:hover{
+    text-decoration:underline;
 }
 
 </style>
@@ -256,8 +251,11 @@ a:hover {
 
             ${sessionScope.teacher.name}様
 
-            <a href="/sms/auth/Logout.action">
+            <a href="/sms/auth/Logout.action"
+               class="btn btn-sm btn-outline-primary">
+
                 ログアウト
+
             </a>
 
         </div>
@@ -267,13 +265,17 @@ a:hover {
 </div>
 
 
-<!-- login 後 -->
+<!-- ===== Login 後 ===== -->
 <c:if test="${not empty sessionScope.teacher}">
 
-    <div class="container">
+    <div class="container-box">
 
         <!-- ===== Sidebar ===== -->
         <div class="sidebar">
+
+            <div class="sidebar-title">
+                メニュー
+            </div>
 
             <a href="../auth/Menu.action">
                 メニュー
@@ -307,9 +309,10 @@ a:hover {
 </c:if>
 
 
-<!-- login 前 -->
+<!-- ===== Login 前 ===== -->
 <c:if test="${empty sessionScope.teacher}">
 
     <div class="content">
 
 </c:if>
+

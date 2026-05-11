@@ -7,14 +7,14 @@
 
     <!-- タイトル -->
     <h2 class="mb-4">
-        科目管理
+        クラス管理
     </h2>
 
 
     <!-- 新規登録 -->
     <div class="text-end mb-3">
 
-        <a href="SubjectCreate.action"
+        <a href="ClassCreate.action"
            class="btn btn-primary">
 
             新規登録
@@ -26,7 +26,7 @@
 
 
     <!-- ===== 一覧 ===== -->
-    <c:if test="${not empty subjects}">
+    <c:if test="${not empty list}">
 
         <table class="table table-hover table-bordered bg-white">
 
@@ -36,11 +36,7 @@
                 <tr>
 
                     <th>
-                        科目コード
-                    </th>
-
-                    <th>
-                        科目名
+                        クラス番号
                     </th>
 
                     <th class="text-center" style="width:200px;">
@@ -54,32 +50,21 @@
             <!-- data -->
             <tbody>
 
-                <c:forEach var="sub" items="${subjects}">
+                <c:forEach var="class_num" items="${list}">
 
                     <tr>
 
                         <td>
-                            ${sub.cd}
-                        </td>
-
-                        <td>
-                            ${sub.name}
+                            ${class_num}
                         </td>
 
                         <!-- ボタン -->
                         <td class="text-center">
 
-                            <a href="SubjectUpdate.action?cd=${sub.cd}"
-                               class="btn btn-sm btn-outline-primary me-2">
+                            <a href="ClassUpdate.action?class_num=${class_num}"
+                               class="btn btn-sm btn-outline-primary">
 
                                 変更
-
-                            </a>
-
-                            <a href="SubjectDelete.action?cd=${sub.cd}"
-                               class="btn btn-sm btn-outline-danger">
-
-                                削除
 
                             </a>
 
@@ -98,11 +83,11 @@
 
 
     <!-- データなし -->
-    <c:if test="${empty subjects}">
+    <c:if test="${empty list}">
 
         <div class="alert alert-warning">
 
-            科目情報が存在しませんでした。
+            クラス情報が存在しませんでした。
 
         </div>
 

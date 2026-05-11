@@ -6,29 +6,28 @@
 
     <!-- タイトル -->
     <h2 class="mb-4">
-        学生情報変更
+        クラス情報登録
     </h2>
 
 
     <!-- 完了メッセージ -->
     <div class="alert alert-success">
 
-        変更が完了しました。
+        登録が完了しました。
 
     </div>
 
 
     <!-- ボタン -->
-    <div class="mt-4">
+    <div class="d-flex gap-2 mt-4">
 
-        <a href="StudentList.action"
-           class="btn btn-primary">
+        <a href="ClassList.action"
+           class="btn btn-outline-secondary">
 
-            学生一覧へ
+            クラス一覧へ
 
         </a>
 
     </div>
 
 </div>
-
