@@ -7,4 +7,4 @@
 <a href="../auth/Login.action">ログイン画面へ</a>
 
 
-<%@include file="../footer.html" %>
+<%@include file="../footer.jsp" %>

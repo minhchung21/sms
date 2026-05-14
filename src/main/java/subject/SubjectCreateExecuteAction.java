@@ -3,7 +3,6 @@ package subject;
 import java.util.HashMap;
 import java.util.Map;
 
-import bean.School;
 import bean.Subject;
 import bean.Teacher;
 import dao.SubjectDAO;
@@ -75,9 +74,9 @@ public class SubjectCreateExecuteAction extends Action {
         // ===== 登録処理 =====
         Subject subject = new Subject();
         // 学校情報をセット
-        School school = new School();
-        school.setCd(teacher.getSchool_cd());
-        subject.setSchool(school);
+        subject.setSchool_cd(
+                teacher.getSchool_cd()
+        );
         
      // 科目情報セット
         subject.setCd(cd);

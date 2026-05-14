@@ -4,11 +4,19 @@ import java.io.Serializable;
 
 public class Subject implements Serializable {
 
-    private String cd;        // 科目コード
-    private String name;      // 科目名
-    private School school;    // 学校（オブジェクト）
+    // ===== 科目コード =====
+    private String cd;
+
+    // ===== 科目名 =====
+    private String name;
+
+    // ===== 学校コード =====
+    private String school_cd;
+
+
 
     // ===== getter =====
+
     public String getCd() {
         return cd;
     }
@@ -17,11 +25,14 @@ public class Subject implements Serializable {
         return name;
     }
 
-    public School getSchool() {
-        return school;
+    public String getSchool_cd() {
+        return school_cd;
     }
 
+
+
     // ===== setter =====
+
     public void setCd(String cd) {
         this.cd = cd;
     }
@@ -30,7 +41,8 @@ public class Subject implements Serializable {
         this.name = name;
     }
 
-    public void setSchool(School school) {
-        this.school = school;
+    public void setSchool_cd(String school_cd) {
+        this.school_cd = school_cd;
     }
+
 }

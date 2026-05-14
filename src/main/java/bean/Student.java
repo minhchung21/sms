@@ -4,14 +4,28 @@ import java.io.Serializable;
 
 public class Student implements Serializable {
 
-    private String no;        // 学生番号
-    private String name;      // 氏名
-    private int entYear;      // 入学年度
-    private String classNum;  // クラス番号
-    private boolean attend;   // 在学フラグ
-    private School school;    // 学校（オブジェクト）
+    // ===== 学生番号 =====
+    private String no;
+
+    // ===== 氏名 =====
+    private String name;
+
+    // ===== 入学年度 =====
+    private int entYear;
+
+    // ===== クラス番号 =====
+    private String classNum;
+
+    // ===== 在学フラグ =====
+    private boolean attend;
+
+    // ===== 学校コード =====
+    private String school_cd;
+
+
 
     // ===== getter =====
+
     public String getNo() {
         return no;
     }
@@ -32,11 +46,14 @@ public class Student implements Serializable {
         return attend;
     }
 
-    public School getSchool() {
-        return school;
+    public String getSchool_cd() {
+        return school_cd;
     }
 
+
+
     // ===== setter =====
+
     public void setNo(String no) {
         this.no = no;
     }
@@ -57,7 +74,8 @@ public class Student implements Serializable {
         this.attend = attend;
     }
 
-    public void setSchool(School school) {
-        this.school = school;
+    public void setSchool_cd(String school_cd) {
+        this.school_cd = school_cd;
     }
+
 }

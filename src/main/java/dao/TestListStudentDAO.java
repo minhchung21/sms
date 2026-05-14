@@ -11,46 +11,96 @@ import bean.TestListStudent;
 
 public class TestListStudentDAO extends DAO {
 
-    // ベースSQL
-    private String baseSql =
-        "select * from test where student_no = ? and school_cd = ?";
+    public List<TestListStudent> filter(
+            Student student
+    ) throws Exception {
 
-    // ResultSet → List<TestListStudent>
-    public List<TestListStudent> postFilter(ResultSet rs) throws Exception {
-        List<TestListStudent> list = new ArrayList<>();
+        List<TestListStudent> list =
+                new ArrayList<>();
 
-        while (rs.next()) {
-            TestListStudent test = new TestListStudent();
-            test.setSubjectCd(rs.getString("subject_cd"));
-            test.setSubjectName(rs.getString("subject_name"));
-            test.setNum(rs.getInt("no"));
-            test.setPoint(rs.getInt("point"));
-            list.add(test);
-        }
-        return list;
-    }
+        Connection con =
+                getConnection();
 
-    // 学生をもとにテスト一覧を取得
-    public List<TestListStudent> filter(Student student) throws Exception {
-        List<TestListStudent> list;
-
-        Connection con = getConnection();
         PreparedStatement st =
-            con.prepareStatement(baseSql);
+                null;
 
-        // バインド
-        st.setString(1, student.getNo());
-        st.setString(2, student.getSchool());
+        try {
 
-        // SQL実行
-        ResultSet rs = st.executeQuery();
+            st = con.prepareStatement(
 
-        // 共通処理に委譲
-        list = postFilter(rs);
+                "select " +
+                "subject.name, " +
+                "test.subject_cd, " +
+                "test.no, " +
+                "test.point " +
 
-        st.close();
-        con.close();
+                "from test " +
+
+                "join subject " +
+                "on test.subject_cd = subject.cd " +
+
+                "where test.student_no=? " +
+
+                "order by test.subject_cd, test.no"
+
+            );
+
+
+
+            st.setString(
+                    1,
+                    student.getNo()
+            );
+
+
+
+            ResultSet rs =
+                    st.executeQuery();
+
+
+
+            while (rs.next()) {
+
+                TestListStudent t =
+                        new TestListStudent();
+
+
+
+                t.setSubjectName(
+                        rs.getString("name")
+                );
+
+                t.setSubjectCd(
+                        rs.getString("subject_cd")
+                );
+
+                t.setNum(
+                        rs.getInt("no")
+                );
+
+                t.setPoint(
+                        rs.getInt("point")
+                );
+
+
+
+                list.add(t);
+            }
+
+        } finally {
+
+            if (st != null) {
+
+                st.close();
+            }
+
+            if (con != null) {
+
+                con.close();
+            }
+        }
 
         return list;
     }
 }
+

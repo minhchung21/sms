@@ -2,6 +2,63 @@
 
 <%@ include file="../header.jsp" %>
 
+<style>
+
+.menu-card{
+    height:180px;
+    transition:0.2s;
+}
+
+.menu-card:hover{
+    transform:translateY(-4px);
+}
+
+.student-card{
+    background:#f5d7d7;
+}
+
+.score-card{
+    background:#dff0df;
+}
+
+.subject-card{
+    background:#dfe7f7;
+}
+
+.class-card{
+    background:#f5efd7;
+}
+
+.menu-link{
+    font-size:28px;
+    text-decoration:none;
+    color:#212529;
+    font-weight:bold;
+}
+
+.menu-link:hover{
+    opacity:0.8;
+}
+
+.score-title{
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:16px;
+    color:#212529;
+}
+
+.score-link{
+    text-decoration:none;
+    color:#0d6efd;
+    font-weight:500;
+}
+
+.score-link:hover{
+    text-decoration:underline;
+}
+
+</style>
+
 <!-- タイトル -->
 <h2 class="mb-4">
     メニュー
@@ -11,19 +68,18 @@
 <div class="row text-center g-4 mt-3">
 
     <!-- 学生管理 -->
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-md-3">
 
-        <div class="shadow rounded d-flex
+        <div class="menu-card
+                    student-card
+                    shadow
+                    rounded
+                    d-flex
                     align-items-center
-                    justify-content-center"
-
-             style="
-                    height:180px;
-                    background:#dbb;
-             ">
+                    justify-content-center">
 
             <a href="../student/StudentList.action"
-               class="fs-4 text-decoration-none text-dark fw-bold">
+               class="menu-link">
 
                 学生管理
 
@@ -35,27 +91,26 @@
 
 
     <!-- 成績管理 -->
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-md-3">
 
-        <div class="shadow rounded d-flex
+        <div class="menu-card
+                    score-card
+                    shadow
+                    rounded
+                    d-flex
                     align-items-center
-                    justify-content-center"
-
-             style="
-                    height:180px;
-                    background:#bdb;
-             ">
+                    justify-content-center">
 
             <div>
 
-                <div class="fs-4 fw-bold mb-3">
+                <div class="score-title">
                     成績管理
                 </div>
 
                 <div class="mb-2">
 
-                    <a href="#"
-                       class="text-decoration-none">
+                    <a href="../test/TestRegist.action"
+                       class="score-link">
 
                         成績登録
 
@@ -65,8 +120,8 @@
 
                 <div>
 
-                    <a href="#"
-                       class="text-decoration-none">
+                    <a href="../test/TestList.action"
+                       class="score-link">
 
                         成績参照
 
@@ -82,19 +137,18 @@
 
 
     <!-- 科目管理 -->
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-md-3">
 
-        <div class="shadow rounded d-flex
+        <div class="menu-card
+                    subject-card
+                    shadow
+                    rounded
+                    d-flex
                     align-items-center
-                    justify-content-center"
-
-             style="
-                    height:180px;
-                    background:#bbd;
-             ">
+                    justify-content-center">
 
             <a href="../subject/SubjectList.action"
-               class="fs-4 text-decoration-none text-dark fw-bold">
+               class="menu-link">
 
                 科目管理
 
@@ -106,19 +160,18 @@
 
 
     <!-- クラス管理 -->
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-md-3">
 
-        <div class="shadow rounded d-flex
+        <div class="menu-card
+                    class-card
+                    shadow
+                    rounded
+                    d-flex
                     align-items-center
-                    justify-content-center"
-
-             style="
-                    height:180px;
-                    background:#ddb;
-             ">
+                    justify-content-center">
 
             <a href="../classnum/ClassList.action"
-               class="fs-4 text-decoration-none text-dark fw-bold">
+               class="menu-link">
 
                 クラス管理
 
@@ -130,4 +183,4 @@
 
 </div>
 
-
+<%@include file="../footer.jsp" %>

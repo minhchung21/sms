@@ -22,7 +22,7 @@
 body{
     margin:0;
     font-family:"Yu Gothic","Meiryo",sans-serif;
-    background:#f8f8f8;
+    background:#ffffff;
     color:#333;
 }
 
@@ -61,7 +61,6 @@ body{
 /* ===== Sidebar ===== */
 .sidebar{
     width:220px;
-    min-height:100vh;
 
     padding:20px;
 
@@ -93,6 +92,24 @@ body{
 
 .sidebar a:hover{
     background:#e3eaf5;
+}
+
+/* 成績管理 */
+.menu-group{
+    padding:10px 12px;
+    margin-bottom:5px;
+
+    font-weight:normal;
+    color:#333;
+}
+
+/* submenu */
+.submenu{
+    margin-left:20px;
+}
+
+.submenu a{
+    font-size:14px;
 }
 
 
@@ -285,17 +302,23 @@ a:hover{
                 学生管理
             </a>
 
-            <a href="#">
+            <!-- 成績管理 -->
+            <div class="menu-group">
                 成績管理
-            </a>
+            </div>
 
-            <a href="#">
-                成績登録
-            </a>
+            <!-- submenu -->
+            <div class="submenu">
 
-            <a href="#">
-                成績参照
-            </a>
+                <a href="../test/TestRegist.action">
+                    成績登録
+                </a>
+
+                <a href="../test/TestList.action">
+                    成績参照
+                </a>
+
+            </div>
 
             <a href="../subject/SubjectList.action">
                 科目管理
@@ -315,4 +338,3 @@ a:hover{
     <div class="content">
 
 </c:if>
-

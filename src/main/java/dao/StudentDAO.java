@@ -100,7 +100,7 @@ public class StudentDAO extends DAO {
         st.setInt(3, student.getEntYear());
         st.setString(4, student.getClassNum());
         st.setBoolean(5, student.isAttend());
-        st.setString(6, student.getSchool().getCd());
+        st.setString(6, student.getSchool_cd());
 
         st.executeUpdate();
 
@@ -174,7 +174,9 @@ public class StudentDAO extends DAO {
         School school = new School();
         school.setCd(rs.getString("school_cd"));
 
-        s.setSchool(school);
+        s.setSchool_cd(
+        	    rs.getString("school_cd")
+        		);
 
         return s;
     }

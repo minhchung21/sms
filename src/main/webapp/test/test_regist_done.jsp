@@ -6,7 +6,7 @@
 
     <!-- タイトル -->
     <h2 class="mb-4">
-        科目情報登録
+        成績管理
     </h2>
 
 
@@ -19,24 +19,20 @@
 
 
     <!-- ボタン -->
-    <div class="d-flex gap-2 mt-4">
+    <div class="mt-4 d-flex gap-3">
 
-        <a href="SubjectCreate.action"
-           class="btn btn-primary">
+    <a href="TestRegist.action"
+       class="btn btn-primary">
+        戻る
+    </a>
 
-            新規登録へ戻る
-
-        </a>
-
-        <a href="SubjectList.action"
-           class="btn btn-outline-secondary">
-
-            科目一覧へ
-
-        </a>
-
-    </div>
+    <a href="TestList.action"
+       class="btn btn-outline-secondary">
+        成績参照
+    </a>
 
 </div>
 
 <%@include file="../footer.jsp" %>
+
+

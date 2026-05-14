@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.School;
 import bean.Subject;
 
 public class SubjectDAO extends DAO {
@@ -76,7 +75,7 @@ public class SubjectDAO extends DAO {
     	String sql = "INSERT INTO subject (school_cd, cd, name) VALUES (?,?,?)";
     	PreparedStatement st = con.prepareStatement(sql);
     	
-    	st.setString(1, subject.getSchool().getCd());
+    	st.setString(1, subject.getSchool_cd());
     	st.setString(2, subject.getCd());
     	st.setString(3, subject.getName());
     	
@@ -164,10 +163,9 @@ public class SubjectDAO extends DAO {
         s.setCd(rs.getString("cd"));
         s.setName(rs.getString("name"));
 
-        School school = new School();
-        school.setCd(rs.getString("school_cd"));
-
-        s.setSchool(school);
+        s.setSchool_cd(
+                rs.getString("school_cd")
+        );
 
         return s;
     }

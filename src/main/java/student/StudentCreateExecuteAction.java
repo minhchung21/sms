@@ -3,7 +3,6 @@ package student;
 import java.util.HashMap;
 import java.util.Map;
 
-import bean.School;
 import bean.Student;
 import bean.Teacher;
 import dao.StudentDAO;
@@ -84,9 +83,9 @@ public class StudentCreateExecuteAction extends Action {
         student.setAttend(true); // 在学中として登録
 
         // 学校情報をセット
-        School school = new School();
-        school.setCd(teacher.getSchool_cd());
-        student.setSchool(school);
+        student.setSchool_cd(
+                teacher.getSchool_cd()
+        );
 
         // ===== DB登録 =====
         dao.insert(student);

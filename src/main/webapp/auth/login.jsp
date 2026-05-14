@@ -3,79 +3,111 @@
 
 <%@include file="../header.jsp" %>
 
-<div style="
+<style>
+
+.login-box{
     width:420px;
     margin:40px auto;
     border:1px solid #ddd;
     background:#fff;
-">
+}
+
+.login-title{
+    background:#eee;
+    padding:10px;
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.login-body{
+    padding:20px;
+}
+
+.login-input{
+    width:100%;
+    height:40px;
+    padding:0 10px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    box-sizing:border-box;
+    background:#eef3fb;
+}
+
+.password-check{
+    text-align:center;
+    margin-bottom:15px;
+    font-size:14px;
+}
+
+.login-btn-area{
+    text-align:center;
+}
+
+.login-btn{
+    width:120px;
+    height:38px;
+    border:none;
+    border-radius:5px;
+    background:#0d6efd;
+    color:#fff;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.login-btn:hover{
+    opacity:0.9;
+}
+
+.error-message{
+    color:red;
+    margin-top:15px;
+    text-align:center;
+}
+
+.mb-12{
+    margin-bottom:12px;
+}
+
+</style>
+
+<div class="login-box">
 
     <!-- タイトル -->
-    <div style="
-        background:#eee;
-        padding:10px;
-        text-align:center;
-        font-size:18px;
-        font-weight:bold;
-    ">
+    <div class="login-title">
         ログイン
     </div>
 
-
     <!-- フォーム -->
-    <div style="padding:20px;">
+    <div class="login-body">
 
         <form action="LoginExecute.action" method="post">
 
             <!-- ID -->
-            <div style="margin-bottom:12px;">
+            <div class="mb-12">
 
                 <input type="text"
                        name="id"
                        placeholder="ＩＤ"
                        required
-
-                       style="
-                            width:100%;
-                            height:40px;
-                            padding:0 10px;
-                            border:1px solid #ccc;
-                            border-radius:4px;
-                            box-sizing:border-box;
-                            background:#eef3fb;
-                       ">
+                       class="login-input">
 
             </div>
 
-
             <!-- PASSWORD -->
-            <div style="margin-bottom:12px;">
+            <div class="mb-12">
 
                 <input type="password"
                        name="password"
                        id="password"
                        placeholder="パスワード"
                        required
-
-                       style="
-                            width:100%;
-                            height:40px;
-                            padding:0 10px;
-                            border:1px solid #ccc;
-                            border-radius:4px;
-                            box-sizing:border-box;
-                            background:#eef3fb;
-                       ">
+                       class="login-input">
 
             </div>
 
-
             <!-- CHECK -->
-            <div style="
-                text-align:center;
-                margin-bottom:15px;
-                font-size:14px;
-            ">
+            <div class="password-check">
 
                 <label>
 
@@ -96,21 +128,11 @@
 
             </div>
 
-
             <!-- BUTTON -->
-            <div style="text-align:center;">
+            <div class="login-btn-area">
 
                 <button type="submit"
-                        style="
-                            width:120px;
-                            height:38px;
-                            border:none;
-                            border-radius:5px;
-                            background:#0d6efd;
-                            color:#fff;
-                            font-size:14px;
-                            cursor:pointer;
-                        ">
+                        class="login-btn">
                     ログイン
                 </button>
 
@@ -118,15 +140,10 @@
 
         </form>
 
-
         <!-- MESSAGE -->
         <c:if test="${not empty message}">
 
-            <div style="
-                color:red;
-                margin-top:15px;
-                text-align:center;
-            ">
+            <div class="error-message">
                 ${message}
             </div>
 
@@ -135,4 +152,5 @@
     </div>
 
 </div>
-<%@include file="../footer.html" %>
+
+<%@include file="../footer.jsp" %>
