@@ -94,7 +94,7 @@ public class TestListSubjectExecuteAction extends Action {
         int year = LocalDate.now().getYear();
 
         List<Integer> entYearSet = new ArrayList<>();
-        for (int i = year - 10; i <= year + 10; i++) {
+        for (int i = year - 3; i <= year + 3; i++) {
             entYearSet.add(i);
         }
 

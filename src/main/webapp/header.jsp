@@ -32,6 +32,10 @@ body{
     background:#dfe7f1;
     padding:15px 25px;
     border-bottom:1px solid #ccc;
+    
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 .header h1{
@@ -42,8 +46,7 @@ body{
 
 /* user info */
 .user-info{
-    text-align:right;
-    margin-top:5px;
+    margin-top:0;
     font-size:14px;
 }
 
@@ -119,7 +122,7 @@ body{
 
     padding:30px;
 
-    background:#fff;
+    background:#f8f9fb;
 }
 
 /* page title */
@@ -322,6 +325,10 @@ a:hover{
 
             <a href="../subject/SubjectList.action">
                 科目管理
+            </a>
+            
+            <a href="../classnum/ClassList.action">
+               	クラス管理
             </a>
 
         </div>

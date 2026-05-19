@@ -1,6 +1,5 @@
 package test;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +11,7 @@ import bean.Teacher;
 import bean.Test;
 import dao.ClassNumDAO;
 import dao.SchoolDAO;
+import dao.StudentDAO;
 import dao.SubjectDAO;
 import dao.TestDAO;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,11 +22,14 @@ import tool.Action;
 public class TestRegistAction extends Action {
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) 
-    	throws Exception {
+    public void execute(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws Exception {
 
         // セッション取得
-        HttpSession session =request.getSession(false);
+        HttpSession session =
+                request.getSession(false);
 
         // ログイン確認
         if (session == null ||
@@ -40,14 +43,17 @@ public class TestRegistAction extends Action {
         }
 
         // ログイン中の先生
-        Teacher teacher = (Teacher) session.getAttribute("teacher");
-
-
+        Teacher teacher =
+                (Teacher) session.getAttribute("teacher");
 
         // 学校情報
-        SchoolDAO schoolDao = new SchoolDAO();
+        SchoolDAO schoolDao =
+                new SchoolDAO();
 
-        School school = schoolDao.get(teacher.getSchool_cd());
+        School school =
+                schoolDao.get(
+                        teacher.getSchool_cd()
+                );
 
 
 
@@ -67,16 +73,23 @@ public class TestRegistAction extends Action {
 
 
         // DAO
-        ClassNumDAO classDao = new ClassNumDAO();
+        ClassNumDAO classDao =
+                new ClassNumDAO();
 
-        SubjectDAO subjectDao = new SubjectDAO();
+        SubjectDAO subjectDao =
+                new SubjectDAO();
 
-        TestDAO testDao = new TestDAO();
+        TestDAO testDao =
+                new TestDAO();
+        
+        StudentDAO studentDAO =
+        		new StudentDAO();
 
 
 
-        // エラー
-        Map<String,String> errors = new HashMap<>();
+        // エラー保存用
+        Map<String, String> errors =
+                new HashMap<>();
 
 
 
@@ -97,26 +110,18 @@ public class TestRegistAction extends Action {
 
 
         // 入学年度一覧
-        LocalDate today =
-                LocalDate.now();
-
-        int year =
-                today.getYear();
-
         List<Integer> entYearSet =
-                new ArrayList<>();
-
-        for (int i = year - 10;i <= year + 10;i++) {
-
-            entYearSet.add(i);
-        }
+                studentDAO.getEntYears(
+                        teacher.getSchool_cd()
+                );
 
 
 
         // 回数一覧
-        List<Integer> countSet = new ArrayList<>();
+        List<Integer> countSet =
+                new ArrayList<>();
 
-        for (int i = 1;i <= 2;i++) {
+        for (int i = 1; i <= 2; i++) {
 
             countSet.add(i);
         }
@@ -124,59 +129,87 @@ public class TestRegistAction extends Action {
 
 
         // 成績一覧
-        List<Test> testList =new ArrayList<>();
+        List<Test> testList =
+                new ArrayList<>();
 
 
 
-        // 検索された場合
-        if (f1 != null ||
-            f2 != null ||
-            f3 != null ||
-            f4 != null) {
+        // 検索ボタン押下時
+        if (request.getParameter("search") != null) {
 
-            // 未選択
-            if ("0".equals(f1) ||
-                "0".equals(f2) ||
-                "0".equals(f3) ||
-                "0".equals(f4)) {
+            // 未選択チェック
+            if (f1 == null || f1.equals("0") ||
+                f2 == null || f2.equals("0") ||
+                f3 == null || f3.equals("0") ||
+                f4 == null || f4.equals("0")) {
 
-                errors.put("1", "入学年度・クラス・科目・回数を選択してください");
+                errors.put(
+                        "1",
+                        "入学年度・クラス・科目・回数を選択してください"
+                );
 
             } else {
 
                 // 型変換
-                int entYear = Integer.parseInt(f1);
+                int entYear =
+                        Integer.parseInt(f1);
 
-                int count = Integer.parseInt(f4);
+                int count =
+                        Integer.parseInt(f4);
 
 
 
                 // 科目取得
-                Subject subject = subjectDao.findByCd(f3);
+                Subject subject =
+                        subjectDao.findByCd(f3);
 
 
 
-                // 成績検索
-                testList =testDao.filter(entYear, f2,subject, count, school);
+                // 科目が存在しない場合
+                if (subject == null) {
+
+                    errors.put(
+                            "1",
+                            "科目情報が存在しません"
+                    );
+
+                } else {
+
+                    // 成績検索
+                    testList =
+                            testDao.filter(
+                                    entYear,
+                                    f2,
+                                    subject,
+                                    count,
+                                    school
+                            );
 
 
 
-                // 科目名
-                request.setAttribute("subjectName", subject.getName());
+                    // 科目名表示用
+                    request.setAttribute(
+                            "subjectName",
+                            subject.getName()
+                    );
 
 
 
-                // データなし
-                if (testList.isEmpty()) {
+                    // データなし
+                    if (testList.isEmpty()) {
 
-                    errors.put("1","成績情報が存在しませんでした");
+                        errors.put(
+                                "1",
+                                "成績情報が存在しませんでした"
+                        );
+                    }
                 }
             }
         }
 
 
 
-        // jspへ値を渡す
+        // JSPへ値を渡す
         request.setAttribute(
                 "errors",
                 errors
@@ -229,10 +262,9 @@ public class TestRegistAction extends Action {
 
 
 
-        // jspへ
+        // JSP表示
         request.getRequestDispatcher(
                 "test_regist.jsp"
         ).forward(request, response);
     }
 }
-

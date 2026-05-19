@@ -1,12 +1,11 @@
 package test;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDAO;
+import dao.StudentDAO;
 import dao.SubjectDAO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -38,35 +37,26 @@ public class TestListAction extends Action {
         String schoolCd =
                 teacher.getSchool_cd();
 
-        // ===== DAO =====
-        ClassNumDAO classNumDao =
-                new ClassNumDAO();
+        // DAO
+        ClassNumDAO classNumDao = new ClassNumDAO();
 
-        SubjectDAO subjectDao =
-                new SubjectDAO();
+        SubjectDAO subjectDao = new SubjectDAO();
+        
+        StudentDAO studentDao = new StudentDAO();
 
-        // ===== data =====
+        // data
         List<String> cNumlist =
                 classNumDao.filter(schoolCd);
 
         List<Subject> list =
                 subjectDao.findBySchool(schoolCd);
 
-        // ===== year list =====
-        LocalDate today =
-                LocalDate.now();
-
-        int year =
-                today.getYear();
-
+        // 入学年度一覧
         List<Integer> entYearSet =
-                new ArrayList<>();
+                studentDao.getEntYears(
+                        teacher.getSchool_cd()
+                );
 
-        for (int i = year - 10; i <= year + 10; i++) {
-
-            entYearSet.add(i);
-
-        }
 
         // ===== request =====
         req.setAttribute("cNumlist", cNumlist);

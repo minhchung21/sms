@@ -31,33 +31,18 @@
                     --------
                 </option>
 
-                <option value="2024"
-                    <c:if test="${ent_year == 2024}">
-                        selected
-                    </c:if>>
-                    2024
-                </option>
-
-                <option value="2025"
-                    <c:if test="${ent_year == 2025}">
-                        selected
-                    </c:if>>
-                    2025
-                </option>
-
-                <option value="2026"
-                    <c:if test="${ent_year == 2026}">
-                        selected
-                    </c:if>>
-                    2026
-                </option>
-
-                <option value="2027"
-                    <c:if test="${ent_year == 2027}">
-                        selected
-                    </c:if>>
-                    2027
-                </option>
+                <c:forEach begin="${nowYear - 2}" 
+                			end="${nowYear + 1}" 
+                			var="year"> 
+                			
+                	<option value="${year}" 
+                		<c:if test="${ent_year == year}"> 
+                			selected 
+                		</c:if>>
+                		 ${year} 
+                	</option> 
+                	
+                </c:forEach>
 
             </select>
 

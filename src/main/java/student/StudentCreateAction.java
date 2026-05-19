@@ -1,5 +1,6 @@
 package student;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import bean.Teacher;
@@ -27,6 +28,8 @@ public class StudentCreateAction extends Action {
         List<String> classnum = dao.filter(teacher.getSchool_cd());
 
         request.setAttribute("classnum", classnum);
+        
+        int nowYear = LocalDate.now().getYear(); request.setAttribute("nowYear", nowYear);
 
         // ===== 画面表示 =====
         request.getRequestDispatcher("student_create.jsp")

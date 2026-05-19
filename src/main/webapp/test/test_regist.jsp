@@ -7,6 +7,7 @@
 
 <h2 class="mb-4">成績管理</h2>
 
+<!-- 検索フォーム -->
 <form method="get" action="TestRegist.action">
 
     <div class="card shadow-sm mb-4">
@@ -75,14 +76,29 @@
                 </div>
 
                 <div class="col-md-2">
-                    <button class="btn btn-primary w-100">検索</button>
+                    <button type = "submit" name = "search" class="btn btn-primary w-100">検索</button>
                 </div>
 
+				</div>
+				
             </div>
 
         </div>
+        
     </div>
+    
 </form>
+
+<!-- エラーメッセージ -->
+    <c:if test="${not empty errors['1']}">
+
+        <div class="alert alert-danger">
+
+            ${errors["1"]}
+
+        </div>
+
+    </c:if>
 
 <!-- ===== RESULT FORM ===== -->
 <c:if test="${not empty testList}">

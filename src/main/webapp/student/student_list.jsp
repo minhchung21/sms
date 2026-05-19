@@ -26,93 +26,112 @@
     <!-- ===== 検索フォーム ===== -->
     <form method="get">
 
-        <div class="row-box shadow-sm">
+        <div class="card shadow-sm mb-4">
 
-            <!-- 入学年度 -->
-            <div class="col-4">
+            <div class="card-body">
 
-                <label>
-                    入学年度
-                </label>
+                <div class="row align-items-end g-3">
 
-                <select name="f1">
+                    <!-- 入学年度 -->
+                    <div class="col-md-4">
 
-                    <option value="0">
-                        --------
-                    </option>
+                        <label class="form-label">
+                            入学年度
+                        </label>
 
-                    <c:forEach var="year" items="${ent_year_set}">
+                        <select name="f1"
+                                class="form-select">
 
-                        <option value="${year}"
-                            <c:if test="${year == f1 + 0}">selected</c:if>>
+                            <option value="0">
+                                --------
+                            </option>
 
-                            ${year}
+                            <c:forEach var="year"
+                                       items="${ent_year_set}">
 
-                        </option>
+                                <option value="${year}"
+                                    <c:if test="${year == f1 + 0}">
+                                        selected
+                                    </c:if>>
 
-                    </c:forEach>
+                                    ${year}
 
-                </select>
+                                </option>
 
-            </div>
+                            </c:forEach>
 
+                        </select>
 
-            <!-- クラス -->
-            <div class="col-4">
-
-                <label>
-                    クラス
-                </label>
-
-                <select name="f2">
-
-                    <option value="0">
-                        --------
-                    </option>
-
-                    <c:forEach var="num" items="${class_num_set}">
-
-                        <option value="${num}"
-                            <c:if test="${num == f2}">selected</c:if>>
-
-                            ${num}
-
-                        </option>
-
-                    </c:forEach>
-
-                </select>
-
-            </div>
+                    </div>
 
 
-            <!-- 在学中 -->
-            <div class="col-2">
+                    <!-- クラス -->
+                    <div class="col-md-4">
 
-                <label>
+                        <label class="form-label">
+                            クラス
+                        </label>
 
-                    在学中
+                        <select name="f2"
+                                class="form-select">
 
-                    <input type="checkbox"
-                           name="f3"
+                            <option value="0">
+                                --------
+                            </option>
 
-                           <c:if test="${not empty f3}">
-                               checked
-                           </c:if>>
+                            <c:forEach var="num"
+                                       items="${class_num_set}">
 
-                </label>
+                                <option value="${num}"
+                                    <c:if test="${num == f2}">
+                                        selected
+                                    </c:if>>
 
-            </div>
+                                    ${num}
+
+                                </option>
+
+                            </c:forEach>
+
+                        </select>
+
+                    </div>
 
 
-            <!-- ボタン -->
-            <div class="col-2 d-flex align-items-end">
+                    <!-- 在学中 -->
+                    <div class="col-md-2">
 
-                <button class="btn btn-secondary">
+                        <label class="form-label">
+                            在学中
+                        </label>
 
-                    絞込み
+                        <div class="form-check mt-2">
 
-                </button>
+                            <input type="checkbox"
+                                   name="f3"
+                                   class="form-check-input"
+
+                                   <c:if test="${not empty f3}">
+                                       checked
+                                   </c:if>>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ボタン -->
+                    <div class="col-md-2">
+
+                        <button class="btn btn-primary w-100">
+
+                            絞込み
+
+                        </button>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -270,3 +289,4 @@
 </div>
 
 <%@include file="../footer.jsp" %>
+

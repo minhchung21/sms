@@ -32,7 +32,7 @@ public class StudentDAO extends DAO {
             sql += " AND is_attend = true";
         }
 
-        sql += " ORDER BY no ASC";
+        sql += " ORDER BY ent_year ASC, CAST(no AS SIGNED) ASC";
 
         PreparedStatement st = con.prepareStatement(sql);
 
