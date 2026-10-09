@@ -9,7 +9,6 @@
         成績管理
     </h2>
 
-
     <!-- 完了メッセージ -->
     <div class="alert alert-success">
 
@@ -17,22 +16,25 @@
 
     </div>
 
-
     <!-- ボタン -->
     <div class="mt-4 d-flex gap-3">
 
-    <a href="TestRegist.action"
-       class="btn btn-primary">
-        戻る
-    </a>
+        <a href="TestRegist.action"
+           class="btn btn-outline-secondary">
 
-    <a href="TestList.action"
-       class="btn btn-outline-secondary">
-        成績参照
-    </a>
+            戻る
+
+        </a>
+
+        <a href="TestList.action"
+           class="btn btn-primary">
+
+            成績参照
+
+        </a>
+
+    </div>
 
 </div>
 
-<%@include file="../footer.jsp" %>
-
-
+<%@ include file="../footer.jsp" %>

@@ -28,6 +28,9 @@
 .class-card{
     background:#f5efd7;
 }
+.attendance-card{
+    background:#f5efd7;
+}
 
 .menu-link{
     font-size:28px;
@@ -38,6 +41,8 @@
 
 .menu-link:hover{
     opacity:0.8;
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 .score-title{
@@ -159,28 +164,51 @@
     </div>
 
 
-    <!-- クラス管理 -->
+    <!-- 出席管理 -->
     <div class="col-12 col-sm-6 col-md-3">
 
         <div class="menu-card
-                    class-card
+                    attendance-card
                     shadow
                     rounded
                     d-flex
                     align-items-center
                     justify-content-center">
 
-            <a href="../classnum/ClassList.action"
-               class="menu-link">
+            <div>
 
-                クラス管理
+                <div class="score-title">
+                    出席管理
+                </div>
 
-            </a>
+                <div class="mb-2">
+
+                    <a href="../attendance/AttendanceList.action"
+                       class="score-link">
+
+                        出席登録
+
+                    </a>
+
+                </div>
+
+                <div>
+
+                    <a href="../attendance/AttendanceHistory.action"
+                       class="score-link">
+
+                        出席参照
+
+                    </a>
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
-
+    
 </div>
 
 <%@include file="../footer.jsp" %>
